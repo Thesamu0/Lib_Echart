@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 Material cardDisplay(Widget chart) {
   return Material(
     color: Colors.white,
-    elevation: 14.0,
+    elevation: 4.0,
     shadowColor: Color(0x802196F3),
     borderRadius: BorderRadius.circular(24.0),
     child: Center(
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
         title: Text("Teste"),
       ),
       body: StaggeredGridView.count(
-        crossAxisCount: 3,
+        crossAxisCount: 2,
         crossAxisSpacing: 16.0,
         mainAxisSpacing: 16.0,
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -67,10 +67,10 @@ class HomePage extends StatelessWidget {
           InkWell(onTap: () {}, child: cardDisplay(LineChart.withSampleData())),
         ],
         staggeredTiles: [
-          StaggeredTile.extent(3, 300),
-          StaggeredTile.extent(3, 200),
-          StaggeredTile.extent(3, 200),
-          StaggeredTile.extent(3, 200),
+          StaggeredTile.extent(2, 340),
+          StaggeredTile.extent(2, 170),
+          StaggeredTile.extent(2, 170),
+          StaggeredTile.extent(2, 170),
         ],
       ),
     );
@@ -118,10 +118,10 @@ List<charts.Series<Alunos, String>> exemploDados2() {
 
 List<charts.Series<Alunos, String>> exemploDados3() {
   final dados = [
-    new Alunos(100, 'Administrativos'),
-    new Alunos(250, 'Acadêmicos'),
-    new Alunos(60, 'Extras'),
-    new Alunos(50, 'Incompletos'),
+    new Alunos(100, 'Adm.'),
+    new Alunos(250, 'Acad.'),
+    new Alunos(60, 'Ext.'),
+    new Alunos(50, 'Inc.'),
   ];
 
   return [
@@ -189,6 +189,10 @@ class LineChart extends StatelessWidget {
           viewport: new charts.NumericExtents(2018, 2019.6),
           tickProviderSpec:
               new charts.StaticNumericTickProviderSpec(statickticks)),
+      behaviors: [
+        new charts.ChartTitle('Alunos aprovados por semestre',
+            subTitle: 'Sem reprovação em nenhuma cadeira')
+      ],
     );
   }
 }
